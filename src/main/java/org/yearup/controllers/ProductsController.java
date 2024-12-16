@@ -16,6 +16,7 @@ import java.util.List;
 @CrossOrigin
 public class ProductsController
 {
+
     private ProductDao productDao;
 
     @Autowired
@@ -23,7 +24,6 @@ public class ProductsController
     {
         this.productDao = productDao;
     }
-
     @GetMapping("")
     @PreAuthorize("permitAll()")
     public List<Product> search(@RequestParam(name="cat", required = false) Integer categoryId,

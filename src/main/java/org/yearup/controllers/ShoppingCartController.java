@@ -68,7 +68,7 @@ public class ShoppingCartController
 
 //    // add a DELETE method to clear all products from the current users cart
 //    // https://localhost:8080/cart
-//    @DeleteMapping("{productId}")
-//    public void de
+    @DeleteMapping("{productId}")
+    public void deleteShoppingCart()
 
 }
