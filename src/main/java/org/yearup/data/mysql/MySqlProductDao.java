@@ -25,8 +25,9 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao
 
         String sql = "SELECT * FROM products " +
                 "WHERE (category_id = ? OR ? = -1) " +
-                "   AND (price <= ? OR ? = -1) " +
-                "   AND (color = ? OR ? = '') ";
+                "  AND (price >= ? OR ? = -1) " +
+                "  AND (price <= ? OR ? = -1) " +
+                "  AND (color = ? OR ? = '') ";
 
         categoryId = categoryId == null ? -1 : categoryId;
         minPrice = minPrice == null ? new BigDecimal("-1") : minPrice;
@@ -139,10 +140,10 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao
 
                 if (generatedKeys.next()) {
                     // Retrieve the auto-incremented ID
-                    int orderId = generatedKeys.getInt(1);
+                    int productId = generatedKeys.getInt(1);
 
                     // get the newly inserted category
-                    return getById(orderId);
+                    return getById(productId);
                 }
             }
         }
