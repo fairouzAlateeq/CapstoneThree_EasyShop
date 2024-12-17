@@ -17,6 +17,7 @@ import java.security.Principal;
 // only logged in users should have access to these actions
 @RestController
 @RequestMapping("/cart")
+@CrossOrigin
 public class ShoppingCartController
 {
     // a shopping cart requires
