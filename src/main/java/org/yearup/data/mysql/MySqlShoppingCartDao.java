@@ -45,6 +45,7 @@ public class MySqlShoppingCartDao implements ShoppingCartDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return shoppingCart;
     }
     @Override
     public ShoppingCart create(ShoppingCart shoppingcart) {
