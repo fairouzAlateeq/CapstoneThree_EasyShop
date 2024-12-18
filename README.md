@@ -24,6 +24,7 @@
             <li>Enhanced the existing API with new functionality</li>
             <li>Worked with a pre-existing MySQL database</li>
             <li>Integrated and tested using Postman</li>
+            <li>Fixed existing bugs to make MySqlProductDao functional </li>
             <li>Added a fully functioning A Category Controller and MySqlCategoryDao</li>
             <li> Added a ShoppingCart feature including a ShoppingCartController and a MySqlShoppingCartDao</li>
         </ul>
