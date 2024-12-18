@@ -19,13 +19,12 @@
         </p>
         <h3>What's in Version 2?</h3>
         <p>
-            You will work as a backend developer for EasyShop, which is already live with Version 1! Now, it’s time to
-            level up by developing features for Version 2:
+            We worked as backend developers to fix bugs and add features to the existing shop.💖
         </p>
         <ul>
-            <li>Enhance the existing API with new functionality</li>
-            <li>Work with a pre-existing MySQL database</li>
-            <li>Integrate and test using Postman</li>
+            <li>Enhanced the existing API with new functionality</li>
+            <li>Worked with a pre-existing MySQL database</li>
+            <li>Integrated and tested using Postman</li>
         </ul>
         <h2>Key Features</h2>
         <p>
@@ -37,10 +36,6 @@
             <li>Collaboration with an existing front-end application</li>
             <li>Support for an iterative development process using GitHub project boards</li>
         </ul>
-        <h3>Get Started</h3>
-        <p>
-            Clone the repo, dive into the starter code, and let’s make shopping smarter, faster, and cuter with EasyShop! 💖
-        </p>
     </main>
     <footer>
         <p>✨ Created with love for EasyShop Version 2 ✨</p>
