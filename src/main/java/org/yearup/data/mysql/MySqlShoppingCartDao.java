@@ -37,8 +37,6 @@ public class MySqlShoppingCartDao implements ShoppingCartDao {
                     ShoppingCartItem item = new ShoppingCartItem();
                     item.getProductId();
                     item.setQuantity(quantity);
-
-
                     shoppingCart.add(item);
                 }
             }

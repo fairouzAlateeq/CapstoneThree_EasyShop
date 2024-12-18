@@ -3,6 +3,7 @@ package org.yearup.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.yearup.data.CategoryDao;
@@ -11,6 +12,7 @@ import org.yearup.models.Category;
 import org.yearup.models.Product;
 
 import javax.annotation.security.PermitAll;
+import java.security.Principal;
 import java.util.List;
 
 // add the annotations to make this a REST controller
@@ -66,10 +68,15 @@ public class CategoriesController
     // add annotation to ensure that only an ADMIN can call this function
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     public Category addCategory(@RequestBody Category category)
     {
         // insert the category
-        return categoryDao.create(category);
+        try {
+            return categoryDao.create(category);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // add annotation to call this method for a PUT (update) action - the url path must include the categoryId
@@ -82,11 +89,11 @@ public class CategoriesController
         categoryDao.update(categoryId, category);
     }
 
-
     // add annotation to call this method for a DELETE action - the url path must include the categoryId
     // add annotation to ensure that only an ADMIN can call this function
     @DeleteMapping("{categoryId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable int categoryId)
     {
         // delete the category by id

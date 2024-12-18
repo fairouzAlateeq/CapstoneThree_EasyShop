@@ -9,6 +9,7 @@ import org.yearup.data.ProductDao;
 import org.yearup.data.ShoppingCartDao;
 import org.yearup.data.UserDao;
 import org.yearup.models.ShoppingCart;
+import org.yearup.models.ShoppingCartItem;
 import org.yearup.models.User;
 
 import java.security.Principal;
@@ -18,6 +19,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/cart")
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class ShoppingCartController
 {
     // a shopping cart requires
@@ -64,7 +66,18 @@ public class ShoppingCartController
         return shoppingCartDao.create(shoppingCart);
     }
 
-
+//    @PostMapping("/products/{productId}")
+//    public ShoppingCart addProductToCart(@PathVariable int productId, @RequestBody ShoppingCartItem item, Principal principal) {
+//        try {
+//            String username = principal.getName();
+//            User user = userDao.getByUserName(username);
+//            ShoppingCart cart = shoppingCartDao.getByUserId(user.getId());
+//            cart.add(item);
+//            return shoppingCartDao.create(cart);
+//        } catch (Exception e) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to add product to cart.");
+//        }
+//    }
 
 
     // add a PUT method to update an existing product in the cart - the url should be

@@ -86,7 +86,6 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
                 try (
                         ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 ) {
-
                     if(resultSet.next()){
                         category.setCategoryId(resultSet.getInt(1));
                         return category;
@@ -129,6 +128,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         ) {
             preparedStatement.setInt(1, categoryId);
             preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
