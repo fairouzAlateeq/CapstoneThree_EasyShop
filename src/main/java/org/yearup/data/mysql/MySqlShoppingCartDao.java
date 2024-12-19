@@ -59,18 +59,6 @@ public class MySqlShoppingCartDao implements ShoppingCartDao {
                     preparedStatement.executeUpdate();
                 }
             }
-            //int rows = preparedStatement.executeUpdate();
-//
-//            if (rows > 0) {
-//                try (
-//                        ResultSet resultSet = preparedStatement.getGeneratedKeys()
-//                ) {
-//                    if (resultSet.next()) {
-//                        shoppingcart.setUserId(resultSet.getInt(1));
-//                        return shoppingcart;
-//                    }
-//                }
-//            }
             return shoppingcart;
         } catch (SQLException e) {
             e.printStackTrace();
