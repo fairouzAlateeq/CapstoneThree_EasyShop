@@ -68,7 +68,12 @@ public class ShoppingCartController
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
     public ShoppingCart createShoppingCart(@RequestBody ShoppingCart shoppingCart, Principal principal){
-        return shoppingCartDao.create(shoppingCart);
+        try {
+            return shoppingCartDao.create(shoppingCart);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     // add a PUT method to update an existing product in the cart - the url should be

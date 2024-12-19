@@ -26,7 +26,8 @@
             <li>Integrated and tested using Postman</li>
             <li>Fixed existing bugs to make MySqlProductDao functional </li>
             <li>Added a fully functioning A Category Controller and MySqlCategoryDao</li>
-            <li> Added a ShoppingCart feature including a ShoppingCartController and a MySqlShoppingCartDao</li>
+            <li>Added a ShoppingCart feature including a ShoppingCartController and a MySqlShoppingCartDao</li>
+            <li>Added Profile Controller & edited Profile Dao to add more methods then implemented them in the MySqlProfileDao</li>
         </ul>
         <h2>Key Features</h2>
         <p>
