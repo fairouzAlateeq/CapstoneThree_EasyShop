@@ -28,11 +28,15 @@ public class ShoppingCartController
     private ProductDao productDao;
 
     @Autowired
-    public ShoppingCartController(ShoppingCartDao shoppingCartDao){
+    public ShoppingCartController(ShoppingCartDao shoppingCartDao, UserDao userDao, ProductDao productDao){
         this.shoppingCartDao = shoppingCartDao;
+        this.userDao = userDao;
+        this.productDao = productDao;
     }
 
     // each method in this controller requires a Principal object as a parameter
+    @GetMapping("")
+    @PreAuthorize("isAuthenticated()")
     public ShoppingCart getCart(Principal principal)
     {
         try
@@ -53,19 +57,19 @@ public class ShoppingCartController
     }
 
     @GetMapping("{userId}")
-    //@PreAuthorize("hasRole('ROLE_USER')")
-    public ShoppingCart getByUserId(int userId){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ShoppingCart getByUserId(int userId, Principal principal){
         return shoppingCartDao.getByUserId(userId);
     }
 
     // add a POST method to add a product to the cart - the url should be
     // https://localhost:8080/cart/products/15 (15 is the productId to be added
     @PostMapping("products/{productId}")
-
-    public ShoppingCart createShoppingCart(@RequestBody ShoppingCart shoppingCart){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ShoppingCart createShoppingCart(@RequestBody ShoppingCart shoppingCart, Principal principal){
         return shoppingCartDao.create(shoppingCart);
     }
-
 //    @PostMapping("/products/{productId}")
 //    public ShoppingCart addProductToCart(@PathVariable int productId, @RequestBody ShoppingCartItem item, Principal principal) {
 //        try {
@@ -85,15 +89,15 @@ public class ShoppingCartController
     // the BODY should be a ShoppingCartItem - quantity is the only value that will be updated
     @PutMapping("/products/{productId}")
 
-    public void putShoppingCart(@PathVariable int id, @RequestBody ShoppingCart shoppingCart){
+    public void putShoppingCart(@PathVariable int id, @RequestBody ShoppingCart shoppingCart, Principal principal){
         shoppingCartDao.update(id, shoppingCart);
     }
 
 //    // add a DELETE method to clear all products from the current users cart
 //    // https://localhost:8080/cart
     @DeleteMapping("{productId}")
-
-    public void deleteShoppingCart(@PathVariable int id){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteShoppingCart(@PathVariable int id, Principal principal){
         shoppingCartDao.delete(id);
     }
 
